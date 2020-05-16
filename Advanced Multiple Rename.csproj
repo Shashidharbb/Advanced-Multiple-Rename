@@ -38,4 +38,8 @@ Renaming are processed based on user choice of file/folder date modified either 
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
+
 </Project>
