@@ -1,0 +1,15 @@
+﻿
+Advancec multiple Rename :
+
+Techonlogy : C#, Xaml, .netCore 3.1
+
+Thrid party libraries  nuget package used 
+
+ <PackageReference Include="MaterialDesignThemes" Version="3.1.1" />   for Material UI
+ <PackageReference Include="Ookii.Dialogs.Wpf.NETCore" Version="2.1.0" /> For Select Folder selector Dialog box.
+
+
+
+Advanced multiple Rename we can use for Multiple files/ Folder Renaming,
+With options of auto generated prifix, suffix, or Custom Prefix/suffix or we can completely 
+rename the files/ folder based on Files/Folder Created date or Modified date. Best suited for photograhers, media professionals.

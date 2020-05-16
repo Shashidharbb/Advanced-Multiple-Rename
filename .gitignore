@@ -3,3 +3,8 @@
 ################################################################################
 
 /bin/Debug/netcoreapp3.1
+/Properties/PublishProfiles
+/bin/Release/netcoreapp3.1
+*.suo
+/obj
+*.user

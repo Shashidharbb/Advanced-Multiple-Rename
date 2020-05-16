@@ -1,0 +1,244 @@
+﻿<UserControl xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  x:Class="Advanced_Multiple_Rename.RenameController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Advanced_Multiple_Rename"
+             mc:Ignorable="d" 
+             TextElement.FontWeight="Regular"
+            TextElement.FontSize="14"
+            TextOptions.TextFormattingMode="Ideal" 
+            TextOptions.TextRenderingMode="Auto"  
+              d:DesignHeight="630" d:DesignWidth="880"  >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition MinHeight="320" Height="*" ></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="126"></ColumnDefinition>
+            <ColumnDefinition MinWidth="250" Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label"  Content="Folder Location" HorizontalAlignment="Left" VerticalAlignment="Center"  Height="25" Width="auto"  Margin="12,0,0,0" Padding="0,8,0,0"/>
+        <TextBox x:Name="TextBox_Path" Grid.Column="1" BorderBrush="Black"  MaxLines="1"   Text="Please select the Folder" IsReadOnly="True" MinWidth="250" Width="auto"  Margin="0,25,98,23" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.5" Padding="2,3,0,0" UseLayoutRounding="False">
+        </TextBox>
+        <Button x:Name="BrowseButton" Grid.Column="1" Width="80" Content="Browse"   Height="32" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,2,8,0" Click="BrowseButton_Click">
+        </Button>
+
+        <Grid Name="Grid2"  Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="210" MaxWidth="220"></ColumnDefinition>
+                <ColumnDefinition MinWidth="200"  MaxWidth="250" Width="*"></ColumnDefinition>
+                <ColumnDefinition MinWidth="100" MaxWidth="240" ></ColumnDefinition>
+                <ColumnDefinition MinWidth="200" MaxWidth="250" Width="*"></ColumnDefinition>
+                <ColumnDefinition MinWidth="200" Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox Name="SortCombo" Grid.Row="0"  Grid.Column="0"  Height="22"  Margin="12,2,3,0" Padding="0,2,0,0" MinWidth="170" Width="180" VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="SortCombo_SelectionChanged" ></ComboBox>
+            <!--<Label x:Name="label_sort" Content="Rename By Date Modified" HorizontalAlignment="Left"  MinWidth="160" VerticalAlignment="Center"  Height="30" Grid.ColumnSpan="1" Margin="7,6,0,0" Visibility="Hidden"/>-->
+            <CheckBox Name="checkbox_Asc" Content="Ascending" Grid.Row="0"  Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left"   Margin="14,10,0,0"  Checked="checkBox_Asc_checked" Unchecked="checkBox_Asc_unchecked">
+            </CheckBox>
+            <CheckBox Name="checkbox_Desc" Content="Desending" Grid.Row="0" Grid.Column="1"  Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="110,10,0,0"  Checked="checkBox_Dsc_checked"  Unchecked="checkBox_Dsc_unchecked">
+            </CheckBox>
+            <Label x:Name="label_fileType" Content="File type" HorizontalAlignment="Left"   VerticalAlignment="Top"  Height="30" Width="70"  Grid.Column="2" Grid.Row="0" Margin="25,8,0,0"  />
+
+            <ComboBox   Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" Height="22" BorderBrush="Black" Padding="2,2,0,0" TextBoxBase.TextChanged="FileExentCombobox_TextChanged"  DropDownClosed="FileExt_ComboboxClosed" DropDownOpened="FileExt_Combobox_DropDownOpened"  VerticalAlignment="Center" Name="FileExt_Combobox"  IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" MinWidth="150"   Margin="16,2,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Name="chkExension" Width="100" Checked="ComboBox_CheckedAndUnchecked" Unchecked="ComboBox_CheckedAndUnchecked" Content="{Binding ExtensionName}" IsChecked="{Binding Check_Status, Mode=TwoWay}" CommandParameter="{Binding ID}">
+                        </CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+            <Label Name="comboxLabel" Grid.Row="0" Grid.Column="3"  Content="Select"  VerticalAlignment="Center"   MouseDown="comboxLabel_MouseDown"  MinWidth="144"    Margin="16,2,16,0" />
+            <!--used to lose focus when dropdown is closed-->
+            <TextBox x:Name="dummyTB" Grid.Column="4" Width="0" Height="0" Opacity="0" VerticalAlignment="Top" HorizontalAlignment="Right" />
+
+            <Label Name="SRenameLabel" Content="Select Rename Type" HorizontalAlignment="Left"   VerticalAlignment="Center"  Height="30" Width="153"  Margin="7,4,0,0"   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"  ></Label>
+            <ComboBox Name="RenameTypeCombo" Grid.Column="1" Grid.Row="1"   BorderBrush="Black"   Height="22"  SelectionChanged="RenameType_SelectionChanged" Margin="16,0,0,0" MinWidth="180" Width="auto" Padding="2,2,0,0"></ComboBox>
+
+
+            <Label Name="CustomLabel" Content="Add-PreFix to File Names" HorizontalAlignment="Left"   VerticalAlignment="Top"  Height="30"   Margin="25,7,0,0"    Grid.Row="1" Grid.Column="2"  Visibility="Hidden"  IsVisibleChanged="CustomLabel_IsVisibleChanged" ></Label>
+            <ComboBox Name="prefixCombo" Grid.Column="3" Grid.Row="1"   BorderBrush="Black"   Height="22"  SelectionChanged="prefixCombo_SelectionChanged" MinWidth="140"   Margin="16,0,2,0"  Padding="2,2,0,0"  Visibility="Hidden" ></ComboBox>
+
+            <Label Name="PrefixNumlabel1" Content="Enter Prefix Number" HorizontalAlignment="Left"   VerticalAlignment="Top"  Height="30" Width="auto"  Margin="7,7,0,0"   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Visibility="Hidden"  ></Label>
+            <TextBox Name="Textbox1" BorderBrush="Black" Grid.Column="1" Grid.Row="2"  Height="30" Width="100" Margin="16,3,0,0" Padding="2,2,0,0" Text="1" MaxLines="1" MaxLength="4"  VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Hidden" PreviewTextInput="Textbox_PreviewTextInput" DataObject.Pasting="Textbox_Pasting" >
+            </TextBox>
+
+            <Label Name="PrefixLabel1" Content="Enter Prefix Name" HorizontalAlignment="Left"   VerticalAlignment="Top"  Height="30" Width="auto" Margin="7,7,0,0"    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Visibility="Hidden"  ></Label>
+            <TextBox Name="CustomTextbox1" BorderBrush="Black" Grid.Column="1" Grid.Row="2"   Grid.ColumnSpan="1" MinWidth="180" Width="auto" Height="30" Margin="16,3,0,0" Padding="2,2,0,0" Text="1" MaxLines="1" MaxLength="20"  VerticalAlignment="Top" Visibility="Hidden"  PreviewTextInput="ALphaTextbox_PreviewTextInput" DataObject.Pasting="AlphaTextbox_Pasting" >
+            </TextBox>
+            <Label Name="PrefixLabel2" Content="Enter Prefix Number" HorizontalAlignment="Left"   VerticalAlignment="Top"  Height="30"   Margin="25,7,0,0"    Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Visibility="Hidden" IsVisibleChanged="CustomLabel_IsVisibleChanged" ></Label>
+            <TextBox Name="CustomTextbox2" BorderBrush="Black" Grid.Column="3" Grid.Row="2"  Grid.ColumnSpan="1" Height="30" Margin="16,3,0,0"  Padding="2,2,0,0" Text="1" MaxLines="1" MaxLength="4" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"  Visibility="Hidden" PreviewTextInput="Textbox_PreviewTextInput" DataObject.Pasting="Textbox_Pasting"  >
+            </TextBox>
+
+            <Label Name="ConstPre_label" Content="Enter Constant Name" HorizontalAlignment="Left"   VerticalAlignment="Top"  Height="30"   Margin="7,7,0,0"    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Hidden" IsVisibleChanged="ConstPre_label_IsVisibleChanged" ></Label>
+            <TextBox Name="ConstPre_Textbox" BorderBrush="Black" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="1"  MinWidth="180" Height="30" Margin="16,3,0,0"  Padding="2,2,0,0" Text="1" MaxLines="1" MaxLength="20"  VerticalAlignment="Top"   Visibility="Hidden" PreviewTextInput="ConstPre__PreviewTextInput" DataObject.Pasting="ConstPre_Textbox_Pasting" >
+            </TextBox>
+
+        </Grid>
+
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" Margin="10,16"  Name="Display_DataGrid" AutoGenerateColumns="False" CanUserAddRows="false" MinHeight="270" Height="auto" CanUserSortColumns="True"  >
+            <DataGrid.Columns >
+                <!--<DataGridTextColumn x:Name="ID" Binding="{Binding ID}" Header="Sl.No" MinWidth="20" IsReadOnly="True" />-->
+
+                <DataGridTemplateColumn SortMemberPath="Sl.no" >
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Sl.no" FontSize="14" MinWidth="20" ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding ID}" FontSize="14" ></TextBlock>
+                        </DataTemplate>
+                      
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header >
+                        <CheckBox Content="Select" Margin="-2,0,0,0" Name="chkSelectAll"  FontSize="14"  Click="chkSelectAll_Click"   />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="cellcheckbox"  IsChecked="{Binding IsSelected}"     Checked="cellcheckbox_Checked" Unchecked="cellcheckbox_Unchecked"   />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn SortMemberPath="Name">
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Name" FontSize="14" MinWidth="120" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Name}" FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn SortMemberPath="Type">
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Type" FontSize="14" MinWidth="40" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Type}" FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn SortMemberPath="Location">
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Location" FontSize="14" MinWidth="200" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Location}" FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn SortMemberPath="Folder Name">
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Folder Name" FontSize="14" MinWidth="160" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Folder_Name}" FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn SortMemberPath="Date_Modified">
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Date Modified" FontSize="14" MinWidth="100" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate  >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Date_Modified,  StringFormat='dd-MMMM-yyyy hh:mm:ss:tt'}"  FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn SortMemberPath="Date_Created">
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Date Created" FontSize="14" MinWidth="100" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Date_Created, StringFormat=\{0:dd-MMMM-yyyy HH:mm:ss:tt\}}" FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn SortMemberPath="Result" >
+                    <DataGridTemplateColumn.Header  >
+                        <TextBlock  Text="Result" FontSize="14" MinWidth="100" Selector.IsSelected="False"  ></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock  Text="{Binding Result}" FontSize="14"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--<DataGridTextColumn x:Name="Name" Binding="{Binding Name}" Header="Name"  MinWidth="80" IsReadOnly="True"  Selector.IsSelected="False" FontSize="14"  />
+                <DataGridTextColumn x:Name="Type" Binding="{Binding Type}" Header="Type" MinWidth="80" IsReadOnly="True" FontSize="14"   />
+                <DataGridTextColumn x:Name="Location" Binding="{Binding Location}" Header="Location" MinWidth="200" IsReadOnly="True" FontSize="14"  />
+                <DataGridTextColumn x:Name="Folder_Name" Binding="{Binding Folder_Name}" Header="Folder Name" MinWidth="160" IsReadOnly="True"  FontSize="14" />
+                <DataGridTextColumn x:Name="Date_Modified" Binding="{Binding Date_Modified}" Header="Date Modified " MinWidth="100" IsReadOnly="True" FontSize="14"  />
+                <DataGridTextColumn x:Name="Date_Created" Binding="{Binding Date_Modified}" Header="Date Created" MinWidth="100" IsReadOnly="True" FontSize="14"  />
+
+                <DataGridTextColumn x:Name="Result" Binding="{Binding Result}" Header="Result " MinWidth="100" IsReadOnly="True" FontSize="14"  />-->
+
+
+
+            </DataGrid.Columns>
+
+            <DataGrid.Resources>
+                <Style x:Key="FocusVisual">
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border BorderBrush="{x:Null}" BorderThickness="0"></Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+
+        <Grid Grid.Row="3" Grid.ColumnSpan="2"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition MinWidth="380" ></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Name="StartButton"  Content="Start Process" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,8,8,0"  Click="StartProcess_click" ></Button>
+
+            <ProgressBar Name="progressbar" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Background="Orange" Foreground="Orange"  Margin="0,14,8,0" Height="20"  Visibility="Hidden"  >
+
+            </ProgressBar>
+            <Button Grid.Row="0" Grid.Column="2" Name="CancelButton" Content="Cancel Process" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,10,0" Visibility="Hidden"  ></Button>
+
+        </Grid>
+    </Grid>
+</UserControl>
