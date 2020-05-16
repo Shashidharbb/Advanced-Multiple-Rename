@@ -5,14 +5,14 @@
 
 
  Screenshots
- ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/01.JPG??raw=true)
+ ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/01.JPG?raw=true)
 
- ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/02.JPG??raw=true)
+ ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/02.JPG?raw=true)
 
- ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/03.JPG??raw=true)
+ ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/03.JPG?raw=true)
 
- ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/04.JPG??raw=true)
+ ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/04.JPG?raw=true)
 
- ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/05.JPG??raw=true)
+ ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/05.JPG?raw=true)
 
- ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/06.JPG??raw=true) 
+ ![Alt text](https://github.com/Shashidharbb/Advanced-Multiple-Rename/blob/master/images/06.JPG?raw=true) 
